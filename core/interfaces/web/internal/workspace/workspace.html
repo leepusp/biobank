@@ -1,0 +1,53 @@
+{% extends "internal/common/base.html" %}
+{% load static %}
+
+{% block title %}Workspace · Biobank LIMS{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'internal/workspace/workspace.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="workspace">
+
+    <!-- ================= HEADER CONTEXT ================= -->
+    <header class="workspace-header">
+        <div>
+            <h1>Workspace</h1>
+            <p class="subtitle">
+                Operational overview of your biobank environment
+            </p>
+        </div>
+    </header>
+
+    <!-- ================= GRID ================= -->
+    <div class="workspace-grid">
+
+        <!-- MAIN CONTENT -->
+        <section class="workspace-main">
+
+            <!-- KPIs / METRICS -->
+            {% include "internal/workspace/partials/metrics.html" %}
+
+            <!-- RECENT ACTIVITY -->
+            {% include "internal/workspace/partials/recent_activity.html" %}
+
+        </section>
+
+        <!-- SIDE PANEL -->
+        <aside class="workspace-sidebar">
+
+            <!-- USER SCOPE -->
+            {% include "internal/workspace/partials/scope.html" %}
+
+            <!-- QUICK ACTIONS -->
+            {% include "internal/workspace/partials/quick_actions.html" %}
+
+        </aside>
+
+    </div>
+
+</div>
+
+{% endblock %}

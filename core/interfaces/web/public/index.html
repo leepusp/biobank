@@ -1,0 +1,181 @@
+{% extends "public/base.html" %}
+
+{% block title %}Biobank CEPID B3{% endblock %}
+
+{% block content %}
+
+<!-- ================= HERO ================= -->
+<section class="mb-5">
+    <div class="py-5">
+
+        <h1 class="fw-semibold mb-3">
+            Biobank CEPID B3
+        </h1>
+
+        <p class="fs-5 text-muted mb-3">
+            Repositório científico centralizado para armazenamento,
+            organização e gestão de bactérias, bacteriófagos e vetores
+            moleculares produzidos no âmbito do consórcio CEPID B3.
+        </p>
+
+        <p class="text-muted mb-4">
+            O Biobank CEPID B3 apoia a pesquisa em microbiologia molecular,
+            biotecnologia e inovação, garantindo rastreabilidade,
+            biossegurança, controle de qualidade e conformidade legal.
+        </p>
+
+        <div class="d-flex flex-wrap gap-3">
+            <a href="{% url 'public_collections' %}"
+               class="btn btn-outline-primary">
+                Explorar coleções
+            </a>
+
+            <a href="{% url 'public_about' %}"
+               class="btn btn-outline-secondary">
+                Sobre o biobanco
+            </a>
+        </div>
+
+        <p class="text-muted small mt-4">
+            Utilize a barra de busca no topo para explorar o catálogo público.
+        </p>
+
+    </div>
+</section>
+
+<hr class="mb-5">
+
+<!-- ================= OVERVIEW ================= -->
+<section class="mb-5">
+    <div class="row gy-5">
+
+        <div class="col-md-4">
+            <h5 class="fw-semibold mb-2">
+                Vetores & Construções
+            </h5>
+            <p class="text-muted">
+                Plasmídeos de expressão, vetores de clonagem,
+                construções repórteres e ferramentas de engenharia
+                genética armazenadas em cepas bacterianas de referência.
+            </p>
+            <p class="small mb-1">
+                <strong>Status:</strong> em expansão
+            </p>
+            <p class="small mb-3">
+                <strong>Estimativa 2026:</strong> 400–500 itens
+            </p>
+            <a href="{% url 'public_collections' %}?module=vectors"
+               class="btn btn-sm btn-outline-primary">
+                Ver coleções
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <h5 class="fw-semibold mb-2">
+                Bactérias
+            </h5>
+            <p class="text-muted">
+                Linhagens laboratoriais de referência,
+                modelos de estudo e isolados ambientais
+                e clínicos utilizados no CEPID B3.
+            </p>
+            <p class="small mb-1">
+                <strong>Status:</strong> em consolidação
+            </p>
+            <p class="small mb-3">
+                <strong>Estimativa 2026:</strong> 400–500 linhagens
+            </p>
+            <a href="{% url 'public_collections' %}?module=bacteria"
+               class="btn btn-sm btn-outline-primary">
+                Ver coleções
+            </a>
+        </div>
+
+        <div class="col-md-4">
+            <h5 class="fw-semibold mb-2">
+                Bacteriófagos
+            </h5>
+            <p class="text-muted">
+                Isolados ambientais e clínicos caracterizados
+                quanto à especificidade de hospedeiro,
+                morfologia, genoma e atividade lítica.
+            </p>
+            <p class="small mb-1">
+                <strong>Status:</strong> em implementação
+            </p>
+            <p class="small mb-3">
+                <strong>Estimativa 2026:</strong> 300–400 isolados
+            </p>
+            <a href="{% url 'public_collections' %}?module=phages"
+               class="btn btn-sm btn-outline-primary">
+                Ver coleções
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<hr class="mb-5">
+
+<!-- ================= INSTITUTIONAL ================= -->
+<section class="mb-5">
+    <div class="row gy-4">
+
+        <div class="col-md-6">
+            <h4 class="fw-semibold mb-3">
+                CEPID B3
+            </h4>
+            <p class="text-muted">
+                O Centro de Pesquisa, Inovação e Difusão – Biologia de
+                Bactérias e Bacteriófagos (CEPID B3) é uma rede colaborativa
+                com mais de 160 pesquisadores vinculados à USP, UNESP,
+                UNICAMP e UNIFESP.
+            </p>
+            <p class="text-muted">
+                O consórcio investiga mecanismos bacterianos fundamentais,
+                incluindo divisão celular, resistência a antibióticos,
+                competição, colonização e interações com bacteriófagos.
+            </p>
+        </div>
+
+        <div class="col-md-6">
+            <h4 class="fw-semibold mb-3">
+                Governança e Qualidade
+            </h4>
+
+            <ul class="ps-3 text-muted">
+                <li>Procedimentos Operacionais Padronizados (POPs)</li>
+                <li>Controle de Qualidade e autenticação</li>
+                <li>Rastreabilidade por identificadores únicos</li>
+                <li>Conformidade com normas de biossegurança (NB2)</li>
+                <li>Adequação à legislação brasileira (SisGen)</li>
+                <li>Integração futura com a rede BioCEL-USP</li>
+            </ul>
+
+            <a href="{% url 'public_governance' %}"
+               class="btn btn-sm btn-outline-secondary mt-2">
+                Saiba mais
+            </a>
+        </div>
+
+    </div>
+</section>
+
+<hr class="mb-5">
+
+<!-- ================= ACCESS ================= -->
+<section>
+    <div class="border-start border-4 ps-4 py-3">
+        <h5 class="fw-semibold mb-2">
+            Acesso ao acervo biológico
+        </h5>
+        <p class="mb-0 text-muted">
+            O acervo do Biobank CEPID B3 não é de acesso público direto.
+            Pesquisadores interessados devem solicitar acesso mediante
+            avaliação da coordenação e assinatura de Termo de Transferência
+            de Material (TTM).
+        </p>
+    </div>
+</section>
+
+{% endblock %}

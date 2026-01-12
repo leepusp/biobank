@@ -1,0 +1,9 @@
+asgiref==3.11.0
+Django==5.2.8
+django-extensions==4.1
+django-filter==25.2
+djangorestframework==3.16.1
+graphviz==0.21
+pydot==4.0.1
+pyparsing==3.2.5
+sqlparse==0.5.3

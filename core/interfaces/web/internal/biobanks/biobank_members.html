@@ -1,0 +1,188 @@
+{% extends "internal/common/base.html" %}
+{% block title %}Biobank Members{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="mb-1">Biobank Members</h2>
+        <p class="text-muted mb-0">
+            Manage members and permissions for
+            <strong>{{ biobank.name }}</strong>
+        </p>
+    </div>
+</div>
+
+<div class="row g-4">
+
+<!-- ===================================================== -->
+<!-- ADD MEMBER (LEFT PANEL) -->
+<!-- ===================================================== -->
+{% if can_manage %}
+<div class="col-lg-4">
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h5 class="card-title mb-3">Add Member</h5>
+
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="add_member">
+
+                <div class="mb-3">
+                    <label class="form-label">User</label>
+                    <select name="user_id" class="form-select" required>
+                        {% for u in available_users %}
+                            <option value="{{ u.id }}">{{ u.username }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Role</label>
+                    <select name="role" class="form-select">
+                        <option value="viewer">Viewer — read only</option>
+                        <option value="editor">Editor — edit data</option>
+                        <option value="manager">Manager — manage members</option>
+                    </select>
+                </div>
+
+                <div class="alert alert-light small mb-3">
+                    Only one <strong>OWNER</strong> exists per biobank.
+                </div>
+
+                <button class="btn btn-primary w-100">
+                    Add Member
+                </button>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endif %}
+
+<!-- ===================================================== -->
+<!-- MEMBERS (RIGHT PANEL) -->
+<!-- ===================================================== -->
+<div class="col-lg-8">
+
+    <!-- OWNER -->
+    <div class="mb-4">
+        <h5 class="mb-2">Owner</h5>
+
+        <div class="card border-primary shadow-sm">
+            <div class="card-body d-flex align-items-center justify-content-between">
+
+                <div class="d-flex align-items-center gap-3">
+                    <div class="avatar bg-primary text-white">
+                        {{ biobank.owner.username|first|upper }}
+                    </div>
+
+                    <div>
+                        <strong>{{ biobank.owner.username }}</strong><br>
+                        <small class="text-muted">
+                            Scientific owner with full permissions
+                        </small>
+                    </div>
+                </div>
+
+                <span class="badge bg-primary">OWNER</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEMBERS -->
+    <h5 class="mb-3">Members</h5>
+
+    <div class="row g-3">
+        {% for mr in members %}
+        {% if mr.user != biobank.owner %}
+        <div class="col-md-6">
+
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="avatar bg-secondary text-white">
+                                {{ mr.user.username|first|upper }}
+                            </div>
+                            <strong>{{ mr.user.username }}</strong>
+                        </div>
+
+                        <span class="badge bg-light text-dark">
+                            {{ mr.role|upper }}
+                        </span>
+                    </div>
+
+                    {% if can_manage %}
+                    <!-- UPDATE ROLE -->
+                    <form method="post" class="mb-2">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="update_role">
+                        <input type="hidden" name="role_id" value="{{ mr.id }}">
+
+                        <label class="form-label small">Role</label>
+                        <select name="role" class="form-select form-select-sm">
+                            <option value="viewer" {% if mr.role == "viewer" %}selected{% endif %}>Viewer</option>
+                            <option value="editor" {% if mr.role == "editor" %}selected{% endif %}>Editor</option>
+                            <option value="manager" {% if mr.role == "manager" %}selected{% endif %}>Manager</option>
+                        </select>
+
+                        <button class="btn btn-outline-primary btn-sm w-100 mt-2">
+                            Update Role
+                        </button>
+                    </form>
+
+                    <!-- REMOVE -->
+                    <form method="post"
+                          onsubmit="return confirmRemove('{{ mr.user.username }}')">
+                        {% csrf_token %}
+                        <input type="hidden" name="action" value="remove_member">
+                        <input type="hidden" name="role_id" value="{{ mr.id }}">
+
+                        <button class="btn btn-outline-danger btn-sm w-100">
+                            Remove Member
+                        </button>
+                    </form>
+                    {% endif %}
+
+                </div>
+            </div>
+
+        </div>
+        {% endif %}
+        {% empty %}
+            <p class="text-muted">No members registered.</p>
+        {% endfor %}
+    </div>
+
+</div>
+</div>
+
+<!-- ===================================================== -->
+<!-- UX HELPERS -->
+<!-- ===================================================== -->
+<style>
+.avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+</style>
+
+<script>
+function confirmRemove(username) {
+    return confirm(
+        `Remove "${username}" from this biobank?\n\n` +
+        `This user will immediately lose access.`
+    );
+}
+</script>
+
+{% endblock %}
+

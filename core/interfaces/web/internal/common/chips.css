@@ -1,0 +1,15 @@
+.tag-chip,
+.keyword-chip {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #f2f4f7;
+    border: 1px solid #d0d5dd;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.chip-selected {
+    background: #dbeafe;
+    border-color: #93c5fd;
+}

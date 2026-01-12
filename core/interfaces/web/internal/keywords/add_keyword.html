@@ -1,0 +1,69 @@
+<!-- ======================================================
+     ADD KEYWORD MODAL
+====================================================== -->
+<div class="modal fade" id="addKeywordModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <form id="addKeywordForm">
+        {% csrf_token %}
+
+        <div class="modal-header">
+          <h5 class="modal-title">Add Keyword</h5>
+          <button type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close">
+          </button>
+        </div>
+
+        <div class="modal-body">
+
+          <div class="mb-3">
+            <label for="keywordKey" class="form-label">
+              Keyword
+            </label>
+            <input type="text"
+                   id="keywordKey"
+                   name="key"
+                   class="form-control"
+                   placeholder="e.g. Diagnosis, Sample Type"
+                   required>
+          </div>
+
+          <div class="mb-3">
+            <label for="keywordValue" class="form-label">
+              Value
+            </label>
+            <input type="text"
+                   id="keywordValue"
+                   name="value"
+                   class="form-control"
+                   placeholder="e.g. Cancer, Blood"
+                   required>
+          </div>
+
+          <small class="text-muted">
+            Keywords are stored as key → value pairs.
+          </small>
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal">
+            Cancel
+          </button>
+
+          <button type="submit"
+                  class="btn btn-success">
+            Add Keyword
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<div class="sidebar-box quick-actions">
+
+    <h4>Quick Actions</h4>
+
+    <a href="/?page=biobanks">
+        Register New Biobank
+    </a>
+
+    <a href="/?page=collections">
+        Create Collection
+    </a>
+
+    <a href="/?page=samples">
+        Register Sample
+    </a>
+
+    {% if request.user.is_staff %}
+        <hr>
+
+        <a href="/admin/" target="_blank">
+            System Administration
+        </a>
+    {% endif %}
+
+</div>

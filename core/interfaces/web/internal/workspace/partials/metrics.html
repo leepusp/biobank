@@ -1,0 +1,35 @@
+<div class="workspace-section">
+    <h3>System Overview</h3>
+
+    <div class="metrics-grid">
+
+        <div class="metric-card">
+            <h4>Registered Biobanks</h4>
+            <div class="metric-value">
+                {{ biobanks|length }}
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <h4>Biological Collections</h4>
+            <div class="metric-value">
+                {{ collections|length }}
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <h4>Total Samples</h4>
+            <div class="metric-value">
+                {{ samples|length }}
+            </div>
+        </div>
+
+        <div class="metric-card">
+            <h4>Metadata Tags</h4>
+            <div class="metric-value">
+                {{ all_tags|length }}
+            </div>
+        </div>
+
+    </div>
+</div>
